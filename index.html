@@ -693,7 +693,7 @@ async function loadData(){
     if(!res.ok) throw new Error("HTTP "+res.status);
     const txt=await res.text();
     const matrix=parseCSV(txt);
-    if(matrix.length<2) throw new Error("planilha vazia");
+    if(matrix.length<1) throw new Error("resposta vazia");
     $("demobar").style.display="none";
     render(aggregate(matrix));
   }catch(err){
