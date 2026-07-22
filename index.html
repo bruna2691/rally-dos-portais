@@ -205,6 +205,15 @@
   .faq details[open] summary::after{transform:rotate(45deg)}
   .faq p{margin:0 0 18px; color:var(--muted)}
 
+  /* example + form embed */
+  .example{background:linear-gradient(100deg,rgba(47,227,201,.10),var(--ink-2) 70%); border:1px solid var(--teal-dim); border-radius:14px; padding:22px 24px; margin:28px 0 4px}
+  .example h4{font-family:"Barlow Condensed",sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:var(--teal); font-size:1.3rem; margin:0 0 8px}
+  .example p{margin:0; color:var(--paper)}
+  .formwrap{margin-top:14px; background:var(--ink-2); border:1px solid var(--line); border-radius:14px; padding:12px}
+  .formwrap iframe{width:100%; height:1150px; border:0; border-radius:10px; background:#fff; display:block}
+  .formph{padding:44px 24px; text-align:center; color:var(--muted); font-size:.95rem}
+  .formph b{color:var(--teal)}
+
   /* footer / demo banner */
   .demobar{background:linear-gradient(90deg,rgba(247,168,40,.14),rgba(247,168,40,.04));
     border-top:1px solid var(--orange-dim); border-bottom:1px solid var(--orange-dim)}
@@ -237,7 +246,9 @@
     <div class="brand"><span class="bead"></span>Rally dos Portais</div>
     <nav class="nav">
       <a href="#ranking">Ranking</a>
-      <a href="#como">Como funciona</a>
+      <a href="#como">Participar</a>
+      <a href="#reservar">Reservar lote</a>
+      <a href="#enviar">Enviar entrega</a>
       <a href="#pontos">Pontuação</a>
       <a href="#premios">Prêmios</a>
       <a href="#agenda">Agenda</a>
@@ -350,18 +361,31 @@
 <!-- COMO FUNCIONA -->
 <section class="band" id="como">
   <div class="wrap">
-    <div class="sec-head"><span class="idx">03</span><h2>Como funciona</h2>
-      <p>Do lote ao ponto, em oito passos.</p></div>
+    <div class="sec-head"><span class="idx">03</span><h2>Como participar</h2>
+      <p>Do lote ao ponto — e o formulário para registrar sua prefeitura.</p></div>
     <div class="steps">
-      <div class="step"><span class="k">1</span><div><div class="t">Acesse a central</div><p>Entre na central da campanha no Coda.</p></div></div>
-      <div class="step"><span class="k">2</span><div><div class="t">Pegue um lote</div><p>Escolha ou solicite um lote disponível (10 prefeituras).</p></div></div>
-      <div class="step"><span class="k">3</span><div><div class="t">Abra o portal oficial</div><p>Acesse o Portal da Transparência de cada município.</p></div></div>
-      <div class="step"><span class="k">4</span><div><div class="t">Baixe o arquivo</div><p>Localize e baixe conforme o tutorial operacional.</p></div></div>
-      <div class="step"><span class="k">5</span><div><div class="t">Organize no padrão</div><p>Estruture o conteúdo no layout padrão da DWW.</p></div></div>
-      <div class="step"><span class="k">6</span><div><div class="t">Salve e registre</div><p>Guarde na pasta oficial e registre o link no Coda.</p></div></div>
-      <div class="step"><span class="k">7</span><div><div class="t">Validação</div><p>A entrega passa pela revisão da equipe de validação.</p></div></div>
-      <div class="step"><span class="k">8</span><div><div class="t">Pontue</div><p>Aprovada, a prefeitura gera 1 ponto no seu ranking.</p></div></div>
+      <div class="step"><span class="k">1</span><div><div class="t">Reserve um lote</div><p>Na central da campanha (Coda), pegue um lote disponível (10 prefeituras).</p></div></div>
+      <div class="step"><span class="k">2</span><div><div class="t">Abra o portal oficial</div><p>Acesse o Portal da Transparência de cada município.</p></div></div>
+      <div class="step"><span class="k">3</span><div><div class="t">Baixe o arquivo</div><p>Localize e baixe conforme o tutorial operacional.</p></div></div>
+      <div class="step"><span class="k">4</span><div><div class="t">Organize no padrão</div><p>Estruture o conteúdo no layout padrão da DWW.</p></div></div>
+      <div class="step"><span class="k">5</span><div><div class="t">Salve na pasta oficial</div><p>Guarde o arquivo original na pasta autorizada, sem alterar o conteúdo.</p></div></div>
+      <div class="step"><span class="k">6</span><div><div class="t">Envie no formulário</div><p>Preencha o formulário abaixo com o arquivo, o município e o link da fonte.</p></div></div>
+      <div class="step"><span class="k">7</span><div><div class="t">Aguarde a validação</div><p>Aprovada, vale 1 ponto. Se voltar como "necessita correção", ajuste e reenvie.</p></div></div>
+      <div class="step"><span class="k">8</span><div><div class="t">Suba no ranking</div><p>Cada aprovação acelera o próximo serviço do Promosys — e a sua faixa de prêmio.</p></div></div>
     </div>
+
+    <div class="example">
+      <h4>Exemplo na prática</h4>
+      <p>A Ana reservou o lote 03 e abriu o Portal da Transparência de Louveira/SP. Baixou o arquivo de despesas, organizou no layout padrão da DWW e salvou o original na pasta oficial. Depois abriu o formulário aqui embaixo, anexou o arquivo, informou "Louveira", "SP" e o link do portal, e enviou. No dia seguinte a coordenação conferiu e marcou como <b>Aprovada</b> — e o nome dela apareceu no ranking com +1 ponto.</p>
+    </div>
+
+    <h3 id="reservar" style="font-size:1.9rem; margin:36px 0 6px">Quero participar &amp; reservar meu lote</h3>
+    <p class="note" style="margin-top:0">Cadastre-se e reserve um lote — ele trava no seu nome na hora. <a id="reservaTab" href="#" style="white-space:nowrap">abrir em nova aba ↗</a></p>
+    <div class="formwrap" id="reservaWrap"></div>
+
+    <h3 id="enviar" style="font-size:1.9rem; margin:36px 0 6px">Enviar entrega</h3>
+    <p class="note" style="margin-top:0">Antes de enviar, confira: arquivo organizado no padrão, salvo na pasta oficial e o link da fonte em mãos. Cada envio entra como <b>Em validação</b> até a coordenação aprovar.</p>
+    <div class="formwrap" id="formWrap"></div>
   </div>
 </section>
 
@@ -474,7 +498,9 @@
    ====================================================================== */
 const CONFIG = {
   SHEET_ID: "1mrZUomsI-BlbG_oVjD77M25e20JKT-v9DzzayG4sNWY",              // ex: "1AbCdEf...". Trecho da URL entre /d/ e /edit
-  SHEET_NAME: "Prefeituras", // nome da aba
+  SHEET_NAME: "Prefeituras", // aba-quadro (com coluna Lote) — fonte do ranking e das reservas
+  FORM_EMBED_URL: "",        // link de incorporação do Google Formulário (Enviar > <> )
+  RESERVA_EMBED_URL: "https://script.google.com/macros/s/AKfycbxbwCfQsecPHCSIBYh_jpDJE_3VKCWh2_WCmC5nc_OyK1C4zPQY8b8pwbMiGCIpnwkT/exec",     // link do app de reserva (Apps Script: Implantar > URL do app da Web, terminando em /exec)
   META: 0,                   // meta de aprovadas p/ a rota; 0 = usa o total da base
   REFRESH_MIN: 5,            // atualização automática, em minutos
   START: "2026-07-20T00:00:00-03:00",
@@ -548,8 +574,9 @@ function demoRows(){
 /* ---------- aggregate ---------- */
 function aggregate(matrix){
   const headers=matrix[0]||[];
-  const iResp=pickCol(headers,["Responsável","Responsavel","Colaborador","Participante"]);
-  const iStat=pickCol(headers,["Status","Situação","Situacao"]);
+  const iResp=pickCol(headers,["Responsável","Responsavel","Colaborador","Participante","Seu nome","Nome completo","Nome"]);
+  const iStat=pickCol(headers,["Status","Situação","Situacao","Validação","Validacao","Resultado"]);
+  const iMuni=pickCol(headers,["Município","Municipio","Cidade","Prefeitura"]);
   const body=matrix.slice(1);
   const total=body.length;
   const funnelKeys=["Disponível","Reservada","Em andamento","Entregue","Em validação","Aprovada","Necessita correção","Bloqueada","Cancelada"];
@@ -561,7 +588,10 @@ function aggregate(matrix){
   body.forEach(r=>{
     const resp=(iResp>=0?(r[iResp]||""):"").trim();
     const st=(iStat>=0?(r[iStat]||""):"").trim();
-    const sN=norm(st);
+    const muni=(iMuni>=0?(r[iMuni]||""):"").trim();
+    let sN=norm(st);
+    // entrega enviada pelo formulário mas ainda sem status = aguardando validação
+    if(!sN && (resp||muni)) sN="em validacao";
     // funnel bucket
     const key=funnelKeys.find(k=>norm(k)===sN);
     if(key) funnel[key]++;
@@ -707,8 +737,30 @@ function useDemo(afterError){
   render(aggregate(demoRows()));
 }
 
+/* ---------- formulário embutido ---------- */
+function mountForm(){
+  const fw=$("formWrap"); if(fw){
+    const u=(CONFIG.FORM_EMBED_URL||"").trim();
+    fw.innerHTML = u
+      ? `<iframe src="${u}" title="Formulário de entrega" loading="lazy">Carregando o formulário…</iframe>`
+      : `<div class="formph">O formulário de entrega aparece aqui depois de configurado.<br>Crie um Google Formulário, copie o link de incorporação e cole em <b>FORM_EMBED_URL</b>, no topo do código.</div>`;
+  }
+  const rw=$("reservaWrap"); if(rw){
+    const u=(CONFIG.RESERVA_EMBED_URL||"").trim();
+    const tab=$("reservaTab");
+    if(u){
+      rw.innerHTML=`<iframe src="${u}" title="Participar e reservar lote" loading="lazy">Carregando…</iframe>`;
+      if(tab) tab.href=u;
+    } else {
+      rw.innerHTML=`<div class="formph">A tela de cadastro e reserva aparece aqui depois de publicar o app.<br>Publique o Apps Script e cole a URL do app da Web em <b>RESERVA_EMBED_URL</b>, no topo do código.</div>`;
+      if(tab) tab.style.display="none";
+    }
+  }
+}
+
 /* ---------- init ---------- */
 buildNodes();
+mountForm();
 renderCountdown();
 loadData();
 setInterval(renderCountdown,60000);
