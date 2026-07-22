@@ -123,6 +123,7 @@
   .rrow.p1 .pos,.rrow.p2 .pos,.rrow.p3 .pos{color:var(--orange)}
   .rrow .who{min-width:0}
   .rrow .name{font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:1.32rem; text-transform:uppercase; letter-spacing:.01em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .rrow .email{font-family:"Space Mono",monospace; color:var(--muted); font-size:.76rem; margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
   .rrow .bar{height:7px; background:rgba(142,163,202,.18); border-radius:99px; margin-top:8px; overflow:hidden}
   .rrow .bar i{display:block; height:100%; background:linear-gradient(90deg,var(--teal-dim),var(--teal)); border-radius:99px; width:0; transition:width .9s ease}
   .badge{justify-self:start; font-family:"Barlow Condensed",sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.05em;
@@ -557,17 +558,18 @@ function demoRows(){
     ["Diego Fontes",18,1],["Elisa Prado",15,4],["Felipe Rocha",12,2],
     ["Gabi Torres",9,3],["Higor Lima",6,1],["Juliana Sá",3,2]
   ];
-  const rows=[["UF","Município","Responsável","Status","Data da validação"]];
+  const mail=n=>n.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\s+/g,".")+"@empresa.com";
+  const rows=[["UF","Município","Responsável","E-mail","Status","Data da validação"]];
   let id=0;
   people.forEach(([name,ap,cor])=>{
-    for(let i=0;i<ap;i++) rows.push(["SP","Município "+(++id),name,"Aprovada","01/08/2026"]);
-    for(let i=0;i<cor;i++) rows.push(["MG","Município "+(++id),name,"Necessita correção",""]);
-    rows.push(["PR","Município "+(++id),name,"Em validação",""]);
-    rows.push(["RS","Município "+(++id),name,"Em andamento",""]);
+    for(let i=0;i<ap;i++) rows.push(["SP","Município "+(++id),name,mail(name),"Aprovada","01/08/2026"]);
+    for(let i=0;i<cor;i++) rows.push(["MG","Município "+(++id),name,mail(name),"Necessita correção",""]);
+    rows.push(["PR","Município "+(++id),name,mail(name),"Em validação",""]);
+    rows.push(["RS","Município "+(++id),name,mail(name),"Em andamento",""]);
   });
   // pool não atribuído
-  for(let i=0;i<70;i++) rows.push(["BA","Município "+(++id),"","Disponível",""]);
-  for(let i=0;i<18;i++) rows.push(["GO","Município "+(++id),"","Reservada",""]);
+  for(let i=0;i<70;i++) rows.push(["BA","Município "+(++id),"","","Disponível",""]);
+  for(let i=0;i<18;i++) rows.push(["GO","Município "+(++id),"","","Reservada",""]);
   return rows;
 }
 
@@ -575,6 +577,7 @@ function demoRows(){
 function aggregate(matrix){
   const headers=matrix[0]||[];
   const iResp=pickCol(headers,["Responsável","Responsavel","Colaborador","Participante","Seu nome","Nome completo","Nome"]);
+  const iMail=pickCol(headers,["E-mail","Email","E mail"]);
   const iStat=pickCol(headers,["Status","Situação","Situacao","Validação","Validacao","Resultado"]);
   const iMuni=pickCol(headers,["Município","Municipio","Cidade","Prefeitura"]);
   const body=matrix.slice(1);
@@ -587,6 +590,7 @@ function aggregate(matrix){
 
   body.forEach(r=>{
     const resp=(iResp>=0?(r[iResp]||""):"").trim();
+    const email=(iMail>=0?(r[iMail]||""):"").trim();
     const st=(iStat>=0?(r[iStat]||""):"").trim();
     const muni=(iMuni>=0?(r[iMuni]||""):"").trim();
     let sN=norm(st);
@@ -595,12 +599,16 @@ function aggregate(matrix){
     // funnel bucket
     const key=funnelKeys.find(k=>norm(k)===sN);
     if(key) funnel[key]++;
-    if(resp) activeSet.add(resp);
+    // identidade da pessoa: e-mail quando houver, senão o nome
+    const pid=(email?norm(email):norm(resp));
+    if(pid) activeSet.add(pid);
     if(sN==="em andamento"||sN==="em validacao"||sN==="entregue"||sN==="reservada") pipeline++;
-    if(resp){
-      per[resp]=per[resp]||{name:resp,ap:0,cor:0};
-      if(sN==="aprovada"){ per[resp].ap++; approved++; }
-      if(sN==="necessita correcao") per[resp].cor++;
+    if(pid){
+      per[pid]=per[pid]||{name:resp||email,email:email,ap:0,cor:0};
+      if(resp) per[pid].name=resp;         // mantém o nome mais recente para exibir
+      if(email) per[pid].email=email;
+      if(sN==="aprovada"){ per[pid].ap++; approved++; }
+      if(sN==="necessita correcao") per[pid].cor++;
     } else if(sN==="aprovada"){ approved++; }
   });
 
@@ -649,6 +657,7 @@ function renderRanking(rk){
       <div class="pos">${i+1}º</div>
       <div class="who">
         <div class="name">${escapeHtml(r.name)}</div>
+        ${r.email?`<div class="email">${escapeHtml(r.email)}</div>`:""}
         <div class="bar"><i data-w="${Math.round(r.ap/max*100)}"></i></div>
       </div>
       <div class="badge ${r.ap>=15?"on":""}">${f.nome}</div>
