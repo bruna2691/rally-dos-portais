@@ -224,6 +224,10 @@
     padding:14px 22px; border-radius:11px; text-decoration:none; font-size:1.05rem}
   .modelo-btn:hover{filter:brightness(1.06)}
   .modelo-btn.alt{background:var(--ink-3); color:var(--paper); border:1px solid var(--teal-dim)}
+  .reserva-btn{display:block; text-align:center; background:var(--orange); color:#20160a;
+    font-family:"Barlow Condensed",sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:.04em;
+    padding:18px; border-radius:12px; text-decoration:none; font-size:1.2rem}
+  .reserva-btn:hover{filter:brightness(1.06)}
   .modelobox{display:flex; gap:12px; flex-wrap:wrap; margin:6px 0 24px}
   .tutgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px}
   .tutcard{background:var(--ink-2); border:1px solid var(--line); border-radius:14px; overflow:hidden}
@@ -794,9 +798,16 @@ function mountForm(){
   const rw=$("reservaWrap"); if(rw){
     const u=(CONFIG.RESERVA_EMBED_URL||"").trim();
     const tab=$("reservaTab");
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
     if(u){
-      rw.innerHTML=`<iframe src="${u}" title="Participar e reservar lote" loading="lazy">Carregando…</iframe>`;
-      if(tab) tab.href=u;
+      if(isMobile){
+        rw.innerHTML=`<a class="reserva-btn" href="${u}" target="_blank" rel="noopener">🏁 Abrir cadastro &amp; reserva</a>`
+          + `<div class="formph" style="padding:12px 0 0">No celular, o cadastro abre em tela cheia numa nova aba.</div>`;
+        if(tab) tab.style.display="none";
+      } else {
+        rw.innerHTML=`<iframe src="${u}" title="Participar e reservar lote" loading="lazy">Carregando…</iframe>`;
+        if(tab) tab.href=u;
+      }
     } else {
       rw.innerHTML=`<div class="formph">A tela de cadastro e reserva aparece aqui depois de publicar o app.<br>Publique o Apps Script e cole a URL do app da Web em <b>RESERVA_EMBED_URL</b>, no topo do código.</div>`;
       if(tab) tab.style.display="none";
