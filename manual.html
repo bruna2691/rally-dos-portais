@@ -76,6 +76,7 @@
       <option value="5">6 · Como chegar aos dados</option>
       <option value="6">7 · Preenchimento e erros comuns</option>
       <option value="7">8 · Checklist final</option>
+      <option value="8">9 · Gravar o log de rede (Network)</option>
     </select>
   </div>
 
@@ -235,6 +236,26 @@
     <li>Se houve impedimento: registrei evidências e anexei na prefeitura (3.3).</li>
   </ul>
   <div class="box azul"><span class="t">Observação legal</span>A remuneração de servidores públicos é informação de acesso público (Lei nº 12.527/2011). Colete apenas o que os portais oficiais publicam e use os dados exclusivamente para os fins da campanha.</div>
+  </section>
+
+  <section class="pg">
+  <h3 id="rede">9. Como gravar o log de rede (Network)</h3>
+  <p>Além da planilha, cada prefeitura precisa de um <b>arquivo de rede</b> — um registro do "caminho" que o navegador faz no portal (as requisições que ele dispara ao carregar as páginas e baixar os dados). Isso ajuda a equipe de tecnologia a entender <b>como cada portal entrega as informações</b>. É feito pelo próprio Chrome, sem instalar nada.</p>
+  <div class="box laranja"><span class="t">Faça isso no Chrome, no mesmo momento em que estiver coletando</span>O ideal é gravar o log <b>enquanto</b> você navega até a lista de servidores e baixa o arquivo — assim o registro captura todo o caminho.</div>
+  <h4>Passo a passo</h4>
+  <ol>
+    <li>Abra o <b>Portal da Transparência</b> da prefeitura no <b>Google Chrome</b>.</li>
+    <li>Aperte <b>F12</b> (ou clique com o botão direito em qualquer lugar da página → <b>Inspecionar</b>). Abre o painel de ferramentas do desenvolvedor.</li>
+    <li>No topo desse painel, clique na aba <b>Network</b> (Rede).</li>
+    <li>Marque a caixinha <b>Preserve log</b> (Preservar registro). É essencial — sem ela, o registro é apagado quando a página recarrega.</li>
+    <li>Clique no ícone de <b>limpar</b> (🚫) para começar do zero.</li>
+    <li>Agora <b>refaça todo o caminho</b> com o Network gravando: navegue até a lista de servidores, aplique os filtros, mude de página e <b>baixe o arquivo</b> dos dados.</li>
+    <li>Ao terminar, clique com o <b>botão direito</b> sobre qualquer linha da lista de requisições → <b>Save all as HAR with content</b> (Salvar tudo como HAR com conteúdo).</li>
+    <li>Salve o arquivo <b>.har</b> no seu computador.</li>
+    <li>No app do Rally, em <b>Minhas entregas</b>, envie esse arquivo no campo <b>"Arquivo de rede"</b> — junto com a planilha, na mesma prefeitura.</li>
+  </ol>
+  <div class="box verde"><span class="t">Resumo rápido</span>Inspecionar → aba <b>Network</b> → marcar <b>Preserve log</b> → limpar → refazer o caminho e baixar → botão direito → <b>Save all as HAR</b> → enviar no app.</div>
+  <div class="box vermelho"><span class="t">Se o arquivo ficar muito grande</span>O limite de envio é 15 MB. Se passar, refaça: limpe o Network, faça só o caminho essencial (abrir a lista e baixar) e salve de novo — sem ficar navegando por páginas extras.</div>
   </section>
 
   <div class="end">Rally dos Portais — Achou. Baixou. Organizou. Pontuou.<br><small>DWW Tecnologia / Promosys</small></div>
