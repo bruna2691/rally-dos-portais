@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual de Coleta de Dados — Rally dos Portais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--azul:#0B3D5C;--ciano:#1B98C4;--laranja:#E8871E;--verde:#2E8B57;--vermelho:#B23B3B;--cinza:#444;--claro:#F2F5F7;--linha:#D6DDE2;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:#e9edf0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--cinza);line-height:1.55;}
+  .page{max-width:840px;margin:24px auto;background:#fff;padding:0 0 40px;box-shadow:0 2px 14px rgba(0,0,0,.08);}
+  .capa{background:var(--azul);color:#fff;padding:34px 40px;text-align:center;}
+  .capa h1{margin:0;font-size:28px;letter-spacing:.5px;font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;}
+  .capa h2{margin:6px 0 0;font-size:19px;color:#BFE7F5;font-family:"Barlow Condensed",sans-serif;}
+  .tag{color:var(--laranja);font-style:italic;font-size:16px;margin:16px 0 4px;}
+  .datas{color:#9fb8c7;font-size:12px;margin-top:12px;}
+  .body{padding:8px 40px;}
+  h3{color:var(--azul);font-size:22px;border-bottom:2px solid var(--linha);padding-bottom:6px;margin-top:10px;font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.3px;}
+  h4{color:var(--ciano);font-size:15px;margin:22px 0 6px;}
+  p{font-size:14.5px;}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;}
+  th{background:var(--azul);color:#fff;text-align:left;padding:8px 10px;font-size:12.5px;}
+  table.ciano th{background:var(--ciano);} table.verde th{background:var(--verde);}
+  td{border:1px solid var(--linha);padding:8px 10px;vertical-align:top;}
+  tr:nth-child(even) td{background:var(--claro);}
+  td.k{font-weight:700;color:var(--azul);white-space:nowrap;}
+  .box{background:var(--claro);border:1px solid var(--linha);border-left:4px solid var(--ciano);padding:12px 16px;margin:16px 0;border-radius:3px;}
+  .box.laranja{border-left-color:var(--laranja);} .box.verde{border-left-color:var(--verde);}
+  .box.azul{border-left-color:var(--azul);} .box.vermelho{border-left-color:var(--vermelho);}
+  .box b{color:var(--azul);} .box .t{font-weight:700;color:var(--azul);display:block;margin-bottom:4px;}
+  ul,ol{font-size:14.5px;padding-left:22px;} li{margin:5px 0;}
+  .chk{padding-left:0;} .chk li{list-style:none;position:relative;padding-left:30px;margin:10px 0;}
+  .chk li:before{content:"";position:absolute;left:0;top:2px;width:16px;height:16px;border:2px solid var(--ciano);border-radius:3px;}
+  .end{text-align:center;color:var(--ciano);font-style:italic;margin-top:30px;border-top:1px solid var(--linha);padding-top:14px;}
+  .btn{background:var(--azul);color:#fff;border:none;padding:9px 16px;border-radius:6px;font-size:13.5px;cursor:pointer;}
+  .btn.ghost{background:#fff;color:var(--azul);border:1px solid var(--azul);}
+  .btn:disabled{opacity:.4;cursor:default;}
+
+  /* navegação por páginas (menu suspenso) */
+  .toolbar{position:sticky;top:0;z-index:10;background:var(--azul);color:#fff;
+    display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:12px 40px;}
+  .toolbar .lbl{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.5px;font-size:15px;}
+  .toolbar select{flex:1;min-width:200px;font-size:14px;padding:8px 10px;border-radius:6px;border:1px solid #2d6a8c;
+    background:#fff;color:var(--azul);font-weight:600;}
+  .pgnav{display:flex;gap:8px;align-items:center;padding:12px 40px 0;flex-wrap:wrap;}
+  .pgnav .pos{color:var(--ciano);font-size:13px;margin-left:auto;}
+  .pg{display:none;} .pg.on{display:block;}
+  @media print{
+    body{background:#fff;} .page{box-shadow:none;margin:0;max-width:100%;}
+    .toolbar,.pgnav{display:none;} .pg{display:block !important;}
+    h3{page-break-before:always;} .capa+.pg h3, .pg:first-of-type h3{page-break-before:avoid;}
+  }
+  @media(max-width:620px){.body,.toolbar,.pgnav{padding-left:20px;padding-right:20px;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="capa">
+    <h1>Manual de Coleta de Dados</h1>
+    <h2>Rally dos Portais</h2>
+    <div class="tag">"Achou. Baixou. Organizou. Pontuou."</div>
+    <div class="datas">Campanha interna • 20/07 a 20/08/2026 • v2</div>
+  </div>
+
+  <div class="toolbar">
+    <span class="lbl">Ir para:</span>
+    <select id="pgSelect">
+      <option value="0">1 · Por que este manual existe</option>
+      <option value="1">2 · O que é cada campo</option>
+      <option value="2">3 · Regras da coleta</option>
+      <option value="3">4 · Glossário A — nomes de coluna</option>
+      <option value="4">5 · Glossário B — padronização</option>
+      <option value="5">6 · Como chegar aos dados</option>
+      <option value="6">7 · Preenchimento e erros comuns</option>
+      <option value="7">8 · Checklist final</option>
+    </select>
+  </div>
+
+  <div class="pgnav">
+    <button class="btn ghost" id="prev">← Anterior</button>
+    <button class="btn ghost" id="next">Próxima →</button>
+    <button class="btn" onclick="window.print()">🖨️ Imprimir tudo / PDF</button>
+    <span class="pos" id="pos"></span>
+  </div>
+
+  <div class="body">
+
+  <section class="pg on">
+  <h3>1. Por que este manual existe</h3>
+  <p>No Rally dos Portais, cada participante reserva prefeituras e coleta os dados dos servidores publicados nos portais da transparência. Como <b>não existe padrão nacional</b>, cada prefeitura usa um sistema diferente, nomes diferentes para a mesma informação e caminhos distintos. Este manual mostra <b>o que procurar</b>, <b>onde clicar</b>, <b>como reconhecer</b> cada informação e <b>como padronizar</b> antes de enviar.</p>
+  <div class="box laranja"><span class="t">As informações que precisamos de cada servidor</span><b>Obrigatórias:</b> Nome • Situação • Tipo de vínculo • Cargo • Remuneração do mês (bruta) • Remuneração líquida.<br><b>Quando houver:</b> CPF (completo ou mascarado) • Matrícula.</div>
+  </section>
+
+  <section class="pg">
+  <h3>2. O que é cada campo</h3>
+  <table>
+    <tr><th>Campo (planilha)</th><th>O que é</th><th>Obrigatório?</th></tr>
+    <tr><td class="k">CPF</td><td>Documento do servidor (pode vir mascarado, ex.: ***.456.789-**).</td><td>Quando houver</td></tr>
+    <tr><td class="k">NOME</td><td>Nome completo do servidor, aposentado ou pensionista.</td><td>Sim</td></tr>
+    <tr><td class="k">MATRÍCULA</td><td>Registro funcional que identifica o servidor no órgão.</td><td>Quando houver</td></tr>
+    <tr><td class="k">SITUAÇÃO</td><td>ATIVO, APOSENTADO ou PENSIONISTA.</td><td>Sim</td></tr>
+    <tr><td class="k">TIPO DE VÍNCULO</td><td>Regime ou tipo de cargo (Estatutário, Celetista, Comissionado...).</td><td>Sim</td></tr>
+    <tr><td class="k">CARGO</td><td>Cargo ou função ocupado.</td><td>Sim</td></tr>
+    <tr><td class="k">REMUNERAÇÃO MÊS</td><td>Remuneração BRUTA do mês (antes dos descontos).</td><td>Sim</td></tr>
+    <tr><td class="k">REMUNERAÇÃO LÍQUIDA</td><td>Valor LÍQUIDO recebido (após os descontos).</td><td>Sim</td></tr>
+  </table>
+  </section>
+
+  <section class="pg">
+  <h3>3. Regras da coleta</h3>
+  <p>Siga estas regras sempre que estiver coletando. Elas resolvem os casos mais comuns e evitam retrabalho.</p>
+  <h4>3.1 CPF ausente</h4>
+  <p>Se o portal <b>não trouxer o CPF completo nem o mascarado</b>, tudo bem: inclua o servidor <b>apenas com o nome</b> (e os demais campos disponíveis). Deixe a coluna CPF em branco.</p>
+  <h4>3.2 Matrícula</h4>
+  <p><b>Sempre que houver matrícula, inclua.</b> Ela ajuda a identificar o servidor e a evitar duplicidades. Se o portal não informar, siga normalmente sem ela.</p>
+  <h4>3.3 Impedimento para extrair os dados</h4>
+  <p>Se houver algum impedimento — por exemplo, o portal <b>só permite pesquisa individual</b> de servidor, ou <b>não há como baixar o arquivo completo</b>:</p>
+  <ol>
+    <li><b>Pule para a próxima prefeitura do lote</b> e siga a coleta normalmente.</li>
+    <li>Ao final, <b>reúna as evidências do impedimento</b> (prints, link, descrição) em um <b>único documento</b>.</li>
+    <li><b>Anexe esse documento na prefeitura</b> correspondente, informando o impedimento.</li>
+  </ol>
+  <div class="box vermelho"><span class="t">Atenção</span>A prefeitura com impedimento comprovado <b>não será contabilizada</b> — mas o registro com evidências é obrigatório para justificar.</div>
+  <h4>3.4 Formato da extração</h4>
+  <p><b>Sempre que possível, extraia em XLSX.</b> Em alguns casos só haverá CSV. Fique atento: <b>campos com acentuação podem desconfigurar no CSV</b> (ex.: "Educação" virando caracteres quebrados). Nesses casos será preciso <b>editar/corrigir os campos</b> afetados antes de enviar.</p>
+  <div class="box laranja"><span class="t">Dica para o CSV com acento</span>Ao abrir o CSV, escolha a codificação <b>UTF-8</b>. Se os acentos aparecerem quebrados, reabra importando como UTF-8 (ou reexporte em XLSX). Corrija manualmente apenas o que restar.</div>
+  <h4>3.5 Padronização de valores</h4>
+  <p>Os portais usam palavras diferentes para a mesma coisa. Precisamos <b>padronizar</b> antes de enviar. Exemplo: um servidor <b>ATIVO</b> às vezes vem descrito como <b>"Estatutário"</b>. As tabelas da seção 5 mostram como converter cada valor para o nosso padrão.</p>
+  </section>
+
+  <section class="pg">
+  <h3>4. Glossário A — nomes de coluna</h3>
+  <p>Serve para <b>identificar qual coluna do portal corresponde a cada campo nosso</b>, mesmo com nomes diferentes.</p>
+  <table class="ciano">
+    <tr><th>Nosso campo</th><th>Como a COLUNA pode se chamar no portal</th></tr>
+    <tr><td class="k">CPF</td><td>CPF; Nº do CPF; CPF/MF; Documento; Doc.; CPF (mascarado/parcial)</td></tr>
+    <tr><td class="k">NOME</td><td>Nome; Nome do servidor; Nome completo; Servidor; Funcionário; Agente público; Favorecido; Beneficiário (pensão)</td></tr>
+    <tr><td class="k">MATRÍCULA</td><td>Matrícula; Matrícula funcional; Nº funcional; Registro funcional (RF); Registro; Cadastro; Chapa; Código do servidor; ID</td></tr>
+    <tr><td class="k">SITUAÇÃO</td><td>Situação; Situação funcional; Condição; Status; Tipo de servidor; Categoria; Vínculo (quando traz ativo/inativo)</td></tr>
+    <tr><td class="k">TIPO DE VÍNCULO</td><td>Vínculo; Tipo de vínculo; Regime jurídico; Natureza do vínculo; Natureza/Tipo do cargo; Provimento; Forma de ingresso</td></tr>
+    <tr><td class="k">CARGO</td><td>Cargo; Função; Cargo/Função; Denominação; Descrição do cargo; Ocupação; Emprego; Especialidade; Categoria funcional</td></tr>
+    <tr><td class="k">REMUNERAÇÃO MÊS</td><td>Remuneração; Remuneração bruta; Remuneração mensal; Salário bruto; Rendimento bruto; Total bruto; Vencimentos; Total de rendimentos; Proventos (inativos)</td></tr>
+    <tr><td class="k">REMUNERAÇÃO LÍQUIDA</td><td>Remuneração líquida; Líquido; Valor líquido; Rendimento líquido; Total líquido; Líquido a receber; Valor pago; Valor a receber</td></tr>
+  </table>
+  <div class="box vermelho"><span class="t">Cuidado — parece, mas não é</span><b>"Salário-base" / "Vencimento base" NÃO é a remuneração do mês.</b> A remuneração do mês (bruta) é o total, com gratificações e adicionais. Também não confunda a coluna <b>Lotação/Órgão/Secretaria</b> (onde a pessoa trabalha) com o Cargo — Lotação não é um campo nosso.</div>
+  </section>
+
+  <section class="pg">
+  <h3>5. Glossário B — padronização de valores</h3>
+  <p>Depois de achar a coluna certa, <b>converta o conteúdo</b> para o nosso padrão. À esquerda, o valor que deve ficar na planilha; à direita, tudo que pode aparecer no portal e significa a mesma coisa.</p>
+  <h4>5.1 SITUAÇÃO</h4>
+  <table class="verde">
+    <tr><th>Padronizar para</th><th>O que pode aparecer no portal</th></tr>
+    <tr><td class="k">ATIVO</td><td>Ativo; Ativa; Em atividade; Em exercício; Efetivo em exercício; Trabalhando; Cedido; À disposição; Requisitado; códigos "A"/"1". <b>Também:</b> quando a coluna de situação traz o regime (Estatutário, Celetista, Comissionado, Efetivo, Temporário), trate como ATIVO.</td></tr>
+    <tr><td class="k">APOSENTADO</td><td>Aposentado; Aposentada; Inativo; Inativa; Aposentadoria; Proventos de aposentadoria; Reformado (militar); Reserva remunerada; Jubilado</td></tr>
+    <tr><td class="k">PENSIONISTA</td><td>Pensionista; Pensão; Pensão por morte; Beneficiário de pensão; Pensão vitalícia; Pensão temporária</td></tr>
+  </table>
+  <div class="box laranja"><span class="t">Pensão — atenção ao nome</span>"<b>Instituidor da pensão</b>" é o servidor falecido que gerou o benefício — <b>não</b> é o pensionista. O pensionista é quem <b>recebe</b>. Use o nome do beneficiário quando o portal separar os dois.</div>
+  <h4>5.2 TIPO DE VÍNCULO</h4>
+  <table class="ciano">
+    <tr><th>Padronizar para</th><th>O que pode aparecer no portal</th></tr>
+    <tr><td class="k">Estatutário</td><td>Estatutário; Efetivo; Servidor efetivo; Concursado; Cargo efetivo; Provimento efetivo; Estável; Regime Próprio; RPPS</td></tr>
+    <tr><td class="k">Celetista</td><td>Celetista; CLT; Regime CLT; Emprego público; Empregado público; RGPS</td></tr>
+    <tr><td class="k">Comissionado</td><td>Comissionado; Cargo em comissão; CC; Comissão; Livre nomeação e exoneração; Nomeado; DAS. (Função gratificada / FG = efetivo com função — anote como "Estatutário + FG")</td></tr>
+    <tr><td class="k">Temporário</td><td>Temporário; Contrato temporário; Contratado por tempo determinado; Prazo determinado; ACT; CTD; Emergencial; PSS</td></tr>
+    <tr><td class="k">Eletivo</td><td>Eletivo; Agente político; Mandato eletivo (Prefeito, Vice, Secretário)</td></tr>
+    <tr><td class="k">Estagiário</td><td>Estagiário; Estágio (obrigatório/não obrigatório); Bolsista</td></tr>
+    <tr><td class="k">Terceirizado</td><td>Terceirizado; Prestador de serviço; Empresa contratada; Mão de obra terceirizada</td></tr>
+    <tr><td class="k">Outros</td><td>Jovem aprendiz/Aprendiz; Conselheiro tutelar; Residente; Voluntário (registre o termo como veio)</td></tr>
+  </table>
+  </section>
+
+  <section class="pg">
+  <h3>6. Como chegar aos dados no portal</h3>
+  <p>Por lei (Lei de Acesso à Informação, nº 12.527/2011), todo município publica a remuneração dos servidores. O caminho muda, mas o roteiro abaixo funciona na maioria dos casos.</p>
+  <h4>6.1 Roteiro genérico</h4>
+  <ol>
+    <li>Abra o site oficial da prefeitura e procure <b>Transparência / Portal da Transparência</b>.</li>
+    <li>Procure a seção de pessoal (ver 6.2).</li>
+    <li>Selecione o <b>mês/ano de referência</b> pedido pela campanha (o mesmo para todos).</li>
+    <li>Abra a lista de servidores e confira as colunas.</li>
+    <li>Prefira <b>exportar em XLSX</b>; se só houver CSV, atente à acentuação (regra 3.4).</li>
+    <li>Se não houver como baixar tudo ou só houver consulta individual, aplique a regra 3.3 (impedimento).</li>
+  </ol>
+  <h4>6.2 Onde a seção de pessoal costuma estar</h4>
+  <ul>
+    <li>Menu <b>Pessoal</b> / <b>Recursos Humanos</b> / <b>Gestão de Pessoas</b></li>
+    <li>Menu <b>Servidores</b> / <b>Quadro de pessoal</b> / <b>Folha de pagamento</b></li>
+    <li>Menu <b>Remuneração</b> / <b>Salários</b> / <b>Despesas com pessoal</b></li>
+    <li>Para aposentados/pensionistas: filtro <b>Inativo</b> ou relatório de <b>Servidores Inativos</b></li>
+  </ul>
+  <div class="box verde"><span class="t">Inativos também têm valor</span>Aposentados e pensionistas também têm remuneração publicada: para aposentado o valor é chamado de <b>proventos</b>; para pensionista, <b>pensão</b>. Ambos preenchem normalmente REMUNERAÇÃO MÊS e LÍQUIDA.</div>
+  </section>
+
+  <section class="pg">
+  <h3>7. Padrões de preenchimento e erros comuns</h3>
+  <table class="ciano">
+    <tr><th>Campo</th><th>Padrão a usar</th></tr>
+    <tr><td class="k">CPF</td><td>Copie como o portal mostra (mascarado ou completo). Se não houver, deixe em branco (regra 3.1).</td></tr>
+    <tr><td class="k">NOME</td><td>Nome completo, sem abreviar.</td></tr>
+    <tr><td class="k">MATRÍCULA</td><td>Copie como está. Sem matrícula, deixe em branco.</td></tr>
+    <tr><td class="k">SITUAÇÃO</td><td>Apenas ATIVO, APOSENTADO ou PENSIONISTA (ver 5.1).</td></tr>
+    <tr><td class="k">TIPO DE VÍNCULO</td><td>Use o valor padronizado da tabela 5.2.</td></tr>
+    <tr><td class="k">CARGO</td><td>Nome do cargo como está no portal.</td></tr>
+    <tr><td class="k">REMUNERAÇÃO MÊS</td><td>Número com vírgula decimal, sem 'R$'. Ex.: 6450,00</td></tr>
+    <tr><td class="k">REMUNERAÇÃO LÍQUIDA</td><td>Mesmo formato. Ex.: 5120,37</td></tr>
+  </table>
+  <h4>Erros mais comuns (evite!)</h4>
+  <ul>
+    <li><b>Trocar bruto por líquido:</b> o líquido é sempre o menor.</li>
+    <li><b>Usar salário-base como remuneração do mês:</b> a do mês é o total bruto.</li>
+    <li><b>Esquecer páginas da listagem:</b> vá até o fim (paginação).</li>
+    <li><b>Misturar meses:</b> use o mesmo mês de referência para todos.</li>
+    <li><b>Não padronizar situação/vínculo:</b> aplique as tabelas da seção 5.</li>
+    <li><b>Acentos quebrados no CSV:</b> corrija (regra 3.4) antes de enviar.</li>
+  </ul>
+  </section>
+
+  <section class="pg">
+  <h3>8. Checklist final por prefeitura</h3>
+  <ul class="chk">
+    <li>Localizei o Portal da Transparência oficial do município.</li>
+    <li>Encontrei a seção de servidores / folha / remuneração.</li>
+    <li>Selecionei o mês de referência correto (o mesmo para todos).</li>
+    <li>Coletei os campos obrigatórios de cada servidor.</li>
+    <li>Incluí CPF quando havia; sem CPF, mantive só o nome (regra 3.1).</li>
+    <li>Incluí a matrícula sempre que o portal informava (regra 3.2).</li>
+    <li>Padronizei SITUAÇÃO (5.1) e TIPO DE VÍNCULO (5.2).</li>
+    <li>Conferi que a líquida é menor que a do mês (bruta).</li>
+    <li>Extraí em XLSX (ou CSV) e corrigi acentos quebrados (3.4).</li>
+    <li>Percorri todas as páginas da listagem.</li>
+    <li>Se houve impedimento: registrei evidências e anexei na prefeitura (3.3).</li>
+  </ul>
+  <div class="box azul"><span class="t">Observação legal</span>A remuneração de servidores públicos é informação de acesso público (Lei nº 12.527/2011). Colete apenas o que os portais oficiais publicam e use os dados exclusivamente para os fins da campanha.</div>
+  </section>
+
+  <div class="end">Rally dos Portais — Achou. Baixou. Organizou. Pontuou.<br><small>DWW Tecnologia / Promosys</small></div>
+  </div>
+</div>
+
+<script>
+  var pgs = document.querySelectorAll(".pg");
+  var sel = document.getElementById("pgSelect");
+  var pos = document.getElementById("pos");
+  var i = 0;
+  function mostra(n){
+    i = Math.max(0, Math.min(pgs.length-1, n));
+    for (var k=0;k<pgs.length;k++) pgs[k].classList.toggle("on", k===i);
+    sel.value = i;
+    pos.textContent = "Página " + (i+1) + " de " + pgs.length;
+    document.getElementById("prev").disabled = (i===0);
+    document.getElementById("next").disabled = (i===pgs.length-1);
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+  sel.addEventListener("change", function(){ mostra(parseInt(sel.value,10)); });
+  document.getElementById("prev").addEventListener("click", function(){ mostra(i-1); });
+  document.getElementById("next").addEventListener("click", function(){ mostra(i+1); });
+  mostra(0);
+</script>
+</body>
+</html>
